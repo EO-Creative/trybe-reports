@@ -1,0 +1,21 @@
+@import 'tailwindcss';
+@import './fonts.css';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../views';
+
+@variant dark (false);
+
+@theme {
+    --font-sans: "Archivo", sans-serif;
+    --font-serif: "Manier", serif;
+
+    --color-spa-light-stone: #f2f3f6;
+    --color-spa-stone: #7b8d92;
+    --color-spa-green: #cadbcf;
+    --color-spa-blue: #59767c;
+}
+
+html, body {
+    scroll-behavior: smooth;
+}
