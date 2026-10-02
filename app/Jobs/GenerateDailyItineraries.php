@@ -21,10 +21,13 @@ class GenerateDailyItineraries implements ShouldQueue
 
     public ?string $outputPath;
 
-    public function __construct(?string $outputPath = null)
+	public ?string $today;
+
+    public function __construct(?string $outputPath = null, bool $tomorrow = false)
     {
         $this->trybe = new TrybeService();
         $this->outputPath = $outputPath;
+		$this->today = $tomorrow ? Carbon::tomorrow()->format( 'Y-m-d' ) : Carbon::today()->format( 'Y-m-d' );
     }
 
     /**
@@ -32,7 +35,8 @@ class GenerateDailyItineraries implements ShouldQueue
      */
     public function handle(): string
     {
-        $today = Carbon::today()->format( 'Y-m-d' );
+        $today = $this->today;
+		
         $query = [
             'page' => 1,
             'item_date_from' => $today,
