@@ -8,8 +8,8 @@ use Illuminate\Console\Command;
 
 use App\Jobs\GenerateDailyItineraries as GenerateDailyItinerariesJob;
 
-#[Signature('trybe:itineraries {--queue : Queue the job instead of running immediately}')]
-#[Description('Generate daily guest itinerary PDF')]
+#[Signature('trybe:itineraries {--queue : Queue the job instead of running immediately} {--tomorrow : Generate itineraries for guests due to arrive tomorrow}')]
+#[Description('Generate guest itineraries PDF')]
 class GenerateDailyItineraries extends Command
 {
     /**
@@ -27,7 +27,7 @@ class GenerateDailyItineraries extends Command
 
         $timeStart = microtime(true);
 
-        $job = new GenerateDailyItinerariesJob();
+        $job = new GenerateDailyItinerariesJob(tomorrow: !!$this->option('tomorrow'));
         $filePath = $job->handle();
 
         $duration = microtime(true) - $timeStart;
