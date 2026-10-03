@@ -20,7 +20,7 @@ class GenerateDailyItineraries extends Command
         if( $this->option('queue') ) {
             GenerateDailyItinerariesJob::dispatch();
 
-            $this->info('Products CSV generation job dispatched to queue.');
+            $this->info('Daily Itineraries PDF generation job dispatched to queue.');
 
             return self::SUCCESS;
         }
@@ -32,7 +32,7 @@ class GenerateDailyItineraries extends Command
 
         $duration = microtime(true) - $timeStart;
 
-        $this->info("Products Data CSV generated at [{$filePath}] in " . number_format($duration, 4) . " seconds.");
+        $this->info("Daily Itineraries PDF generated at [{$filePath}] in " . number_format($duration, 4) . " seconds.");
 
         return self::SUCCESS;
     }
