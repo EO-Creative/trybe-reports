@@ -15,6 +15,7 @@
         "laravel/tinker": "^3.0",
         "livewire/blaze": "^1.0",
         "livewire/livewire": "^4.1",
+        "rap2hpoutre/fast-excel": "*",
         "spatie/browsershot": "*",
         "spatie/laravel-pdf": "*"
     },
