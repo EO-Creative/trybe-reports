@@ -78,7 +78,15 @@ class GenerateIntakeReport implements ShouldQueue
 		$outputDir = $this->outputPath ?? Config::get('trybe.output_path', storage_path('app/public/reports'));
 		$destinationFile = rtrim($outputDir, '/') . '/Intake_Forms_Report.xlsx';
 
-		(new FastExcel( $intakeForms ))->export( $destinationFile );
+		(new FastExcel( $intakeForms ))->configureOptionsUsing(function ($options) {
+			if( method_exists( $options, 'setColumnWidth' ) ) {
+				$options->setColumnWidth( 20, 1 );
+				$options->setColumnWidth( 30, 2 );
+				$options->setColumnWidth( 50, 3 );
+				$options->setColumnWidth( 20, 4 );
+				$options->setColumnWidth( 25, 5 );
+			}
+		})->export( $destinationFile );
 
 		return $destinationFile;
 	}
