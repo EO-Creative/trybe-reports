@@ -1,7 +1,12 @@
+@use('Illuminate\Support\Facades\Vite')
+
 <html lang="en">
     <head>
         <title>Carden Park Spa Itinerary</title>
-        @vite(['resources/css/pdf.css'])
+        {{-- @vite(['resources/css/pdf.css']) --}}
+        <style type="text/css">
+            {!! Vite::content('resources/css/pdf.css') !!}
+        </style>
     </head>
     <body>
         @foreach( $itineraries as $itinerary )
